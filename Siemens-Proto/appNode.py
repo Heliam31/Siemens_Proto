@@ -97,11 +97,6 @@ def subscribe(mqttclient, topic):
 
 #-------------------------------------------Main----------------------------------------------------
 
-LOGIN = "nodered"
-PASSWORD = "test"
-ADDR = "neocampus.fr"
-PORT = 10882
-TOPIC = "_lora/#"
 client = connect_mqtt("SiemensNodeRedLora",LOGIN, PASSWORD, ADDR, PORT)
 
 subscribe(client, topic=TOPIC)
