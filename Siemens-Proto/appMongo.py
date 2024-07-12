@@ -29,26 +29,26 @@ def add_csv (addr, time ,measures):
 
 #GET MSG FROM MONGODB------------------------------------------------------------------------------------------------------
 
-# client = pymongo.MongoClient("mongodb://apiReader:readerPassword@autocampus.fr:27017/?authMechanism=DEFAULT&authSource=admin")
+# client = pymongo.MongoClient("mongoDB database link")
 # # Database Name
-# db = client["datalake"]
+# db = client["db"]
 # # Collection Name
-# col = db["_lora"]
+# col = db["collec"]
 
 # #Get one line
 # # x = col.find_one()
 
 # now = datetime.now()
 # now_plus_10 = now - timedelta(hours= 5)
-# # x = col.find_one({'appargs': "SIEMENS", 'appid' : "PIA-BTP"}, sort ={ "datetime": -1 })
+# # x = col.find_one({'appargs': "X", 'appid' : "Y"}, sort ={ "datetime": -1 })
 # # print("ouiuiuiuiuohjbjub: ", type(x["datetime"]))
-# # x = col.find({'appargs': "SIEMENS", 'appid' : "PIA-BTP", "datetime" : {"$gte" : now_plus_10}}) #, 'datetime':{"$gte":date_newer,"$lt":date_older}
+# # x = col.find({'appargs': "X", 'appid' : "Y", "datetime" : {"$gte" : now_plus_10}}) #, 'datetime':{"$gte":date_newer,"$lt":date_older}
 # start = datetime(year=2024, month=3, day=18, hour=14, minute=0, second=0)
 # stopaj = datetime(year=2024, month=3, day=27, hour=14, minute=0, second=0)
 # cpt_rep = 0
 # while start < stopaj:
 #     stopped = 0                                                         
-#     x = col.find({'appargs': "SIEMENS", 'appid' : "PIA-BTP", "datetime" : {"$gte" : start}} ,limit = 1000 )
+#     x = col.find({'appargs': "X", 'appid' : "Y", "datetime" : {"$gte" : start}} ,limit = 1000 )
 #     x = list(x)
 #     print(len(x))
 #     for line in x:
