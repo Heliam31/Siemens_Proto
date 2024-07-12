@@ -1,0 +1,27 @@
+
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensLoRaIAQTimeSyncProtocol{
+    option (nanopb_msgopt).no_unions = true;
+    
+    message LoRaTimeSyncRequest {
+        optional string ignored                 = 1;
+    }
+
+    message LoRaTimeSyncResponse {
+        required string timezone                = 1;
+        required uint32 utc_in_seconds          = 2;
+        required int32 utc_offset_in_seconds    = 3;
+        optional string dst_on                  = 4;
+        optional string dst_off                 = 5;
+        optional int32 dst_offset_minutes       = 6 [(nanopb).int_size = IS_16];
+    }
+
+    oneof action {
+        LoRaTimeSyncRequest    request    = 1;
+        LoRaTimeSyncResponse   response   = 2;
+    }
+
+}

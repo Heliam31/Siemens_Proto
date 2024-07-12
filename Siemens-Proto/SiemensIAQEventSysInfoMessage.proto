@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventSysInfoMessage{
+    required string reason = 1;
+    required string firmware_version = 2;
+    optional string mac_address = 3;
+    optional uint32 user_id = 4;
+    required int32 rssi = 5 [(nanopb).int_size = IS_16];
+    optional uint32 utc_time_sec = 6;
+    optional int32 utc_offset_in_minutes = 7 [(nanopb).int_size = IS_16];
+    optional int32 dst_offset_in_minutes = 8 [(nanopb).int_size = IS_16];
+    optional string dst_on = 9;
+    optional string dst_off = 10;
+}

@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQCommandPreferenceMessage {
+    enum SiemensPreferenceMode {
+        PREF_GENERAL = 0;
+        PREF_PRODUCTIVITY = 1;
+        PREF_SLEEP = 2;
+        PREF_ALLERGY = 3;
+        PREF_BABY = 4;
+    }
+
+    required SiemensPreferenceMode mode = 1;
+}

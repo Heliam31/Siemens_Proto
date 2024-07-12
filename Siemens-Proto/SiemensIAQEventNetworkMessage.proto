@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventNetworkMessage {
+    required bool connected = 1;
+}

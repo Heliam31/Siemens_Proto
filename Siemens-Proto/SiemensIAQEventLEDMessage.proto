@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventLEDMessage {
+    enum SiemensIAQLEDBrightnessMode {
+        BRIGHTNESS_MANUAL = 0;
+        BRIGHTNESS_AUTO = 1;
+        BRIGHTNESS_SLEEP = 2;
+        BRIGHTNESS_MATRIX_OFF = 3;
+        BRIGHTNESS_ALL_OFF = 4;
+    }
+
+    required SiemensIAQLEDBrightnessMode mode = 1;
+    required uint32 brightness = 2 [(nanopb).int_size = IS_8];
+}

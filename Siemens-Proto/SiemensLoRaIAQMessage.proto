@@ -1,0 +1,70 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+import 'SiemensIAQEventScoreMessage.proto';
+import 'SiemensIAQEventBatteryMessage.proto';
+import 'SiemensIAQEventNetworkMessage.proto';
+import 'SiemensIAQEventDisplayMessage.proto';
+import 'SiemensIAQEventLEDMessage.proto';
+import 'SiemensIAQEventSysInfoMessage.proto';
+import 'SiemensIAQEventOTAUpgradeMessage.proto';
+import 'SiemensIAQEventPingPongMessage.proto';
+import 'SiemensIAQEventRSSIMessage.proto';
+import 'SiemensIAQCommandPreferenceMessage.proto';
+import 'SiemensIAQCommandDisplayMessage.proto';
+import 'SiemensIAQCommandLEDMessage.proto';
+import 'SiemensIAQCommandTutorialMessage.proto';
+import 'SiemensIAQCommandOTAUpgradeMessage.proto';
+import 'SiemensIAQCommandSetTimezoneMessage.proto';
+import 'SiemensIAQCommandSysctrlMessage.proto';
+import 'SiemensIAQCommandNotificationMessage.proto';
+import 'SiemensLoRaIAQTimeSyncProtocol.proto';
+import 'SiemensLoRaIAQOTAProtocol.proto';
+
+// This enumeration exists to compact encode the device UUID, not really to differentiate
+//  messages between device types.
+enum SiemensDeviceType {
+    SIEMENS_V1      = 0;
+    SIEMENS_GLOW    = 1;
+    SIEMENS_OMNI    = 2;
+    SIEMENS_MINT    = 3;
+    SIEMENS_REV2    = 4;
+    SIEMENS_GATEWAY = 5;
+}
+
+message SiemensIAQLoraMessage {
+    option (nanopb_msgopt).no_unions = true;
+    
+    message DeviceUUID {
+        required SiemensDeviceType device_type                        = 1;
+        required uint32 device_id                                   = 2;
+    }
+
+    required DeviceUUID device_uuid                                 = 1;
+    //Any device can send 0 for device_timestamp, implying no valid sense of time on the senser system; value is UTC epoch seconds
+    required uint32 device_timestamp                                = 2;
+
+    oneof message {
+        SiemensIAQEventScoreMessage event_score                      = 3;
+        SiemensIAQEventBatteryMessage event_battery                  = 4;
+        SiemensIAQEventNetworkMessage event_network                  = 5;
+        SiemensIAQEventDisplayMessage event_display                  = 6;
+        SiemensIAQEventLEDMessage event_led                          = 7;
+        SiemensIAQEventSysInfoMessage event_sysinfo                  = 8;
+        SiemensIAQEventOTAUpgradeMessage event_ota_upgrade           = 9;
+        SiemensIAQCommandPreferenceMessage command_preference        = 10;
+        SiemensIAQCommandDisplayMessage command_display              = 11;
+        SiemensIAQCommandLEDMessage command_led                      = 12;
+        SiemensIAQCommandTutorialMessage command_tutorial            = 13;
+        SiemensIAQCommandOTAUpgradeMessage command_ota_upgrade       = 14;
+        SiemensIAQCommandSetTimezoneMessage command_set_timezone     = 15;
+        SiemensIAQCommandSysctrlMessage command_sysctrl              = 16;
+        SiemensIAQCommandNotificationMessage command_notification    = 17;
+        SiemensIAQEventPingPongMessage event_pingpong                = 18;
+        SiemensIAQEventRSSIMessage event_rssi                        = 19;
+        SiemensLoRaIAQTimeSyncProtocol time_sync_protocol            = 20;
+        SiemensLoRaIAQOTAProtocol ota_protocol                       = 21;
+                   
+    };  
+}

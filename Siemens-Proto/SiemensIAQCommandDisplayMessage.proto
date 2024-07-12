@@ -1,0 +1,54 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQCommandDisplayMessage {
+    enum SiemensIAQDisplayMode {
+        SIEMENS_DISP_DEFAULT = 1;
+        SIEMENS_DISP_SCORE = 2;
+        SIEMENS_DISP_CLOCK = 3;
+        SIEMENS_DISP_CLOCK_24HR = 4;
+        SIEMENS_DISP_TEMP_HUMID = 5;
+        SIEMENS_DISP_TEMP_HUMID_C = 6;
+        SIEMENS_DISP_TEMP_HUMID_F = 7;
+        SIEMENS_DISP_TEMP = 8;
+        SIEMENS_DISP_TEMP_C = 9;
+        SIEMENS_DISP_TEMP_F = 10;
+        SIEMENS_DISP_HUMID = 11;
+        SIEMENS_DISP_CO2 = 12;
+        SIEMENS_DISP_VOC = 13;
+        SIEMENS_DISP_DUST = 14;
+        SIEMENS_DISP_DUST_PM2DOT5 = 15;
+        SIEMENS_DISP_DUST_PM10 = 16;
+        SIEMENS_DISP_BATTERY = 17;
+        SIEMENS_DISP_DEVICE_ID = 18;
+        SIEMENS_DISP_TEXT = 19;
+        SIEMENS_DISP_TOGGLE_ALL = 20;
+        SIEMENS_DISP_UNKNOWN = 21;
+    }
+    optional SiemensIAQDisplayMode mode = 1;
+
+    enum SiemensIAQDisplayTempUnit {
+        SIEMENS_DISP_TEMP_UNIT_C = 0;
+        SIEMENS_DISP_TEMP_UNIT_F = 1;
+        SIEMENS_DISP_TEMP_UNIT_UNKNOWN = 2;
+    }
+    optional SiemensIAQDisplayTempUnit temp_unit = 2;
+
+    enum SiemensIAQDisplayDefaultModeEnable {
+        SIEMENS_DISP_DEFAULT_MODE_ENABLED = 0;
+        SIEMENS_DISP_DEFAULT_MODE_DISABLED = 1;
+        SIEMENS_DISP_DEFAULT_MODE_UNKNOWN = 2;
+    }
+    optional SiemensIAQDisplayDefaultModeEnable default_mode = 3;
+
+    optional string text = 4; //unused ; TODO cleanup
+
+    enum SiemensClockMode {
+        SIEMENS_CLOCK_MODE_12HR = 0;
+        SIEMENS_CLOCK_MODE_24HR = 1;
+        SIEMENS_CLOCK_MODE_UNKNOWN = 2;
+    }
+
+    optional SiemensClockMode clock_mode = 6;
+}

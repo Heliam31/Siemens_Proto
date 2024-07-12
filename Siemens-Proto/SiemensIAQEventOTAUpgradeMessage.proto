@@ -1,0 +1,34 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventOTAUpgradeMessage{
+
+    message SiemensIAQEventOTAStateMessage {
+        enum OTAProgressState {
+            OTA_STARTING = 0;
+            OTA_CONNECTING = 1;
+            OTA_CHECKING = 2;
+            OTA_ERASEING = 3;
+            OTA_DOWNLOADING = 4;
+            OTA_VERIFYING = 5;
+            OTA_DONE = 6;
+            OTA_REBOOTING = 7;
+            OTA_ABORTING = 8;
+        }
+    
+        required OTAProgressState ota_http_progress = 1;
+        optional uint32 percent = 2 [(nanopb).int_size = IS_8];
+    }
+
+    message SiemensIAQEventOTAResultMessage {
+        // Intentionally not using an enum here, since we want flexibility of encoding the result,
+        //  and we want to avoid a ton of logic on the receive end to deal with the result.
+        required string ota_result = 1;
+    }
+
+    oneof ota_ {
+        SiemensIAQEventOTAStateMessage   progress = 1;
+        SiemensIAQEventOTAResultMessage  result = 2;
+    }
+}

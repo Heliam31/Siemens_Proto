@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQCommandSysctrlMessage {
+    enum SiemensSysctrlCommand {
+        SYSCTRL_REBOOT = 0;
+        SYSCTRL_VOC_CAL_RESET = 1;
+        SYSCTRL_FACTORY_RESET = 2;
+        SYSCTRL_TIME_SYNC = 3;
+        SYSCTRL_UNKNOWN = 4;
+    }
+
+    required SiemensSysctrlCommand command = 1;
+    optional string args = 2;
+}

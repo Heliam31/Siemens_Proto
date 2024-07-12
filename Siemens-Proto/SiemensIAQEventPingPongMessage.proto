@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventPingPongMessage {
+    enum PingPongMessageType {
+        PING = 0;
+        PONG = 1;
+    }
+
+    required PingPongMessageType type   = 1;
+    required string identifier          = 2;
+}

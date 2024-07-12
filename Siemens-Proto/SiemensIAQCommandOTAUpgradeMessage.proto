@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQCommandOTAUpgradeMessage {
+    required string desired_version = 1;
+    optional bool force = 2;
+}

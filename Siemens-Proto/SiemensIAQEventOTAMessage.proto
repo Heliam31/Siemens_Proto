@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventOTAMessage{
+    required string current_version = 1;
+    required string desired_Version = 2;
+
+}

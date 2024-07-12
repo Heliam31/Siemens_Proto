@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQCommandNotificationMessage {
+    required string message = 1;
+    optional string display = 2; //unused
+    optional int32 direction = 3 [(nanopb).int_size = IS_8];
+    optional uint32 speed = 4 [(nanopb).int_size = IS_8];
+    optional uint32 buzzer_hz = 5 [(nanopb).int_size = IS_16];
+    optional uint32 buzzer_start_ms = 6 [(nanopb).int_size = IS_16];
+    optional uint32 buzzer_end_ms = 7 [(nanopb).int_size = IS_16];
+}

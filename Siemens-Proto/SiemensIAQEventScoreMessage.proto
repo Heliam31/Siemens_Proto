@@ -1,0 +1,66 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventScoreMessage {
+
+    message SiemensIndex {
+      enum SiemensIndexType {
+        INDEX_1 = 0;
+        INDEX_2 = 1;
+        INDEX_3 = 2;
+        INDEX_4 = 3;
+        INDEX_5 = 4;
+      }
+      required SiemensIndexType temp_index = 1;
+      required SiemensIndexType humid_index = 2;
+      required SiemensIndexType co2_index = 3;
+      required SiemensIndexType voc_index = 4;
+      required SiemensIndexType pm25_index = 5;
+    }
+
+    enum SiemensScoreColor {
+      COLOR_GREEN = 0;
+      COLOR_AMBER = 1;
+      COLOR_RED = 2;
+    }
+    required SiemensScoreColor color = 2;
+
+    message Sensor {
+      required float temp = 1;
+      required float humid = 2;
+      required uint32 co2 = 3  [(nanopb).int_size = IS_16];
+      required uint32 co2_est = 4 [(nanopb).int_size = IS_16];
+      required uint32 voc = 5  [(nanopb).int_size = IS_16];
+      required uint32 pm25 = 6 [(nanopb).int_size = IS_16];
+      required uint32 pm10 = 7 [(nanopb).int_size = IS_16];
+      optional float lux = 8;
+      optional float spl_A = 9;
+    }
+
+    message SensorRaw {
+      required float temp_raw = 1;
+      required float humid_raw = 2;
+      required uint32 co2_raw = 3 [(nanopb).int_size = IS_16];
+      required uint32 co2_est_raw = 4 [(nanopb).int_size = IS_16];
+      required uint32 voc_raw = 5 [(nanopb).int_size = IS_16];
+      required float voc_eth_raw = 6;
+      required float voc_h2_raw = 7;
+      required uint32 pm2_5_raw = 8 [(nanopb).int_size = IS_16];
+      required uint32 pm10_raw = 9 [(nanopb).int_size = IS_16];
+      required uint32 lux_raw = 10 [(nanopb).int_size = IS_16];
+      required uint32 voc_baseline = 11;
+    }
+
+    required uint32 score = 3 [(nanopb).int_size = IS_8];
+    required SiemensIndex index = 4;
+    required Sensor sensor = 5;
+    required SensorRaw sensor_raw = 6;
+
+    enum SiemensScoreHighLowMeta {
+      META_HIGH = 0;
+      META_LOW = 1;
+    }
+    required SiemensScoreHighLowMeta meta_temp = 7;
+    required SiemensScoreHighLowMeta meta_humid = 8;
+}

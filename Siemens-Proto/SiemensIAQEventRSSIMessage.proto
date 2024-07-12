@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventRSSIMessage {
+    enum RSSIContext {
+        DEVICE_RX = 0;
+        GATEWAY_RX = 1;
+    };
+    
+    required RSSIContext source = 1;
+    required int32 rssi = 2 [(nanopb).int_size = IS_16];
+}

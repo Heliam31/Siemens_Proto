@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQCommandTutorialMessage {
+    enum SiemensIAQTutorialMode {
+        SIEMENS_TUTORIAL_TEMP = 0;
+        SIEMENS_TUTORIAL_HUMID = 1;
+        SIEMENS_TUTORIAL_CO2 = 2;
+        SIEMENS_TUTORIAL_VOC = 3;
+        SIEMENS_TUTORIAL_DUST = 4;
+        SIEMENS_TUTORIAL_WHITE_BLINK = 5;
+        SIEMENS_TUTORIAL_WHITE_SOLID = 6;
+        SIEMENS_TUTORIAL_GOOD = 7;
+        SIEMENS_TUTORIAL_FAIR = 8;
+        SIEMENS_TUTORIAL_POOR = 9;
+        SIEMENS_TUTORIAL_SCORE = 10;
+        SIEMENS_TUTORIAL_EXIT = 11;
+        SIEMENS_TUTORIAL_UNKNOWN = 12;
+    }
+
+    required SiemensIAQTutorialMode mode = 1;
+}

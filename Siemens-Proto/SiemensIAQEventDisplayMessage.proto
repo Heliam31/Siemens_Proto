@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventDisplayMessage {
+    enum SiemensIAQDisplayMode {
+        SIEMENS_DISP_DEFAULT = 0;
+        SIEMENS_DISP_SCORE = 1;
+        SIEMENS_DISP_CLOCK = 2;
+        SIEMENS_DISP_CLOCK_24HR = 3;
+        SIEMENS_DISP_TEMP_HUMID = 4;
+        SIEMENS_DISP_TEMP_HUMID_C = 5;
+        SIEMENS_DISP_TEMP_HUMID_F = 6;
+        SIEMENS_DISP_TEMP = 7;
+        SIEMENS_DISP_TEMP_C = 8;
+        SIEMENS_DISP_TEMP_F = 9;
+        SIEMENS_DISP_HUMID = 10;
+        SIEMENS_DISP_CO2 = 11;
+        SIEMENS_DISP_VOC = 12;
+        SIEMENS_DISP_DUST = 13;
+        SIEMENS_DISP_DUST_PM2DOT5 = 14;
+        SIEMENS_DISP_DUST_PM10 = 15;
+        SIEMENS_DISP_BATTERY = 16;
+        SIEMENS_DISP_DEVICE_ID = 17;
+        SIEMENS_DISP_TEXT = 18;
+        SIEMENS_DISP_TOGGLE_ALL = 19;
+        SIEMENS_DISP_UNKNOWN = 20;
+    }
+
+    required SiemensIAQDisplayMode mode = 1;
+    required uint32 brightness = 2 [(nanopb).int_size = IS_8];
+}

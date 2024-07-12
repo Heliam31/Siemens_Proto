@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+import 'nanopb.proto';
+
+message SiemensIAQEventBatteryMessage {
+    required uint32 charge_percent = 1 [(nanopb).int_size = IS_8];
+    required bool plugged = 2;
+    required bool charging = 3;
+}
